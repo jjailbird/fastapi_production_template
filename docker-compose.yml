@@ -12,7 +12,7 @@ services:
     volumes:
       - ./:/src
     ports:
-      - "16000:8000"
+      - ${APP_PORTEX}:${APP_PORT}
     depends_on:
       - app_db
 
@@ -38,6 +38,20 @@ services:
       - '--requirepass myStrongPassword'
     ports:
       - 36379:6379
+
+  app_db_admin:
+    container_name: app_pgadmin4
+    image: dpage/pgadmin4:latest
+    # restart: unless-stopped
+    # mem_reservation: 256m
+    env_file:
+      - .env
+    ports:
+      - ${PGADMIN_PORTEX}:${PGADMIN_PORT}
+    volumes:
+      - app_pg_admin_data:/var/lib/pgadmin
+    depends_on:
+      - app_db
 
 volumes:
   app_pg_data:
