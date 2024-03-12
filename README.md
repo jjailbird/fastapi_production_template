@@ -27,7 +27,7 @@ This repo is kind of a template I use when starting up new FastAPI projects:
 Current version of the template (with SQLAlchemy >2.0 & Pydantic >2.0) wasn't battle tested on production, 
 so there might be some workarounds instead of neat solutions, but overall idea of the project structure is still the same.
 
-## Local Development
+## Local Development (with docker)
 
 ### First Build Only
 1. `cp .env.example .env`
