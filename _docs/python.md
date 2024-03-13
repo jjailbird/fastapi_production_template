@@ -10,7 +10,6 @@ pyenv versions
 pyenv install --list
 pyenv install 3.8.0
 
-
 pipenv --python 3.8.0
 pipenv install -r requirements.txt
 pipenv graph
