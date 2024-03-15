@@ -28,4 +28,4 @@ async-asgi-testclient = "==1.4.11"
 pytest-env = "==1.0.1"
 
 [requires]
-python_version = "3.12"
+python_version = "3.10.9"
