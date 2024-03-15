@@ -6,14 +6,21 @@
 
 ```shell
 
+# Install python version management
 pyenv versions
 pyenv install --list
 pyenv install 3.8.0
 
+# Generate Profile
 pipenv --python 3.8.0
+pipenv install [package_name]
 pipenv install -r requirements.txt
-pipenv graph
-pipenv shell
+pipenv install -r requirements.txt --dev
+
+# Using Profile
+pipenv install # from Pipfile
+pipenv graph # list all installed packages
+pipenv shell # activate the virtual environment
 exit
 ```
 
@@ -27,7 +34,13 @@ exit
 # Install pyenv 
 
 ## (linux / mac os)
+sudo apt update && sudo apt install -y build-essential curl libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev python-openssl git
 curl https://pyenv.run | bash
+
+## (add below scripts to .bashrc or .zshrc)
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 
 ## (windows)
 https://github.com/pyenv-win/pyenv-win
@@ -73,6 +86,7 @@ pipenv --python 3.8.0
 
 # Install a package
 pipenv install requests
+pipenv install requests --dev
 
 # Install a package with a specific version
 pipenv install requests==2.25.1
@@ -88,6 +102,7 @@ pipenv install -r requirements.txt
 
 # Uninstall a package
 pipenv uninstall requests
+pipenv uninstall --all
 
 # List all installed packages
 pipenv graph
@@ -100,6 +115,15 @@ pipenv shell
 
 # Deactivate the virtual environment
 exit
+
+
+# Install from Pipfile and generate Pipfile.lock
+pipenv install
+
+# After edit Pipfile and apply Pipfile.lock
+pipenv lock # Generate or update Pipfile.lock from Pipfile
+pipenv sync # install only main packages from Pipfile.lock
+pipenv sync --dev # install include dev packages from Pipfile.lock
 
 ```
 

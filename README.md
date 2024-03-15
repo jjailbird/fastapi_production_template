@@ -98,3 +98,13 @@ Creating a new database...
 Applying the backup to the new database...
 Backup applied successfully.
 ```
+
+## Local Development and Debugging (with pipenv)
+
+```bash
+# Install from Pipfile
+pipenv install --dev 
+# or
+pipenv install --dev --skip-lock
+pipenv shell
+```
