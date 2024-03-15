@@ -102,6 +102,8 @@ Backup applied successfully.
 ## Local Development and Debugging (with pipenv)
 
 ```bash
+# Install python version (recommanded use pyenv) in Pipfile [requires]
+
 # Install from Pipfile
 pipenv install --dev 
 # or

@@ -125,5 +125,17 @@ pipenv lock # Generate or update Pipfile.lock from Pipfile
 pipenv sync # install only main packages from Pipfile.lock
 pipenv sync --dev # install include dev packages from Pipfile.lock
 
+
+# Change the python version
+
+# 1. Remove the old environment
+pipenv --rm
+
+# 2. Change the python version in the Pipfile
+sed -i "s/python_version = \".*\"/python_version = \"3.10.9\"/g" Pipfile
+
+# 3. Create a new environment
+pipenv install
+
 ```
 
