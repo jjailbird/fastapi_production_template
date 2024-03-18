@@ -17,7 +17,7 @@ asyncpg = "==0.28.*"
 fastapi = "==0.103.*"
 uvicorn = {extras = ["standard"], version = "==0.23.*"}
 sentry-sdk = "==1.29.*"
-async-timeout = "*"
+async-timeout = "==4.0.*"
 
 [dev-packages]
 ruff = "==0.1.3"
