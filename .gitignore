@@ -136,4 +136,4 @@ node_modules/
 .idea/
 backup.dump
 backup.dump.gz
-.vscode
+#.vscode
