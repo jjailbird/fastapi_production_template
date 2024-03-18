@@ -32,6 +32,7 @@ so there might be some workarounds instead of neat solutions, but overall idea o
 ### First Build Only
 1. `cp .env.example .env`
 2. `docker network create app_main`
+3. `export COMPOSE_PROJECT_NAME=fastapi-server` (linux like)
 3. `docker-compose up -d --build`
 
 ### Linters
@@ -110,3 +111,8 @@ pipenv install --dev
 pipenv install --dev --skip-lock
 pipenv shell
 ```
+
+### Debuggin in VSCode with pipenv
+
+  - VSCode 하단의 상태 바에서 Python 인터프리터 버전을 클릭합니다. (python 파일 편집 상태에서 우측 하단) 
+  - 만약 Pipenv 환경이 보이지 않는다면, Ctrl+Shift+P (Windows/Linux) 또는 Cmd+Shift+P (Mac), Python: Select Interpreter
