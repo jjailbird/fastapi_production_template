@@ -12,9 +12,10 @@ services:
     volumes:
       - ./:/src
     ports:
-      - ${APP_PORTEX}:${APP_PORT}
+      - ${PORT_EXTERN}:${PORT}
     depends_on:
       - app_db
+      - app_redis
 
   app_db:
     container_name: app_db
@@ -23,11 +24,25 @@ services:
     env_file:
       - .env
     volumes:
-      - app_pg_data:/var/lib/postgresql/data
-      - app_pg_data_backups:/backups
+      - app_db_data:/var/lib/postgresql/data
+      - app_db_backups:/backups
       - ./scripts/postgres:/scripts
     ports:
-      - "65432:5432"
+      - "${POSTGRES_PORT}:5432"
+
+  app_db_admin:
+    container_name: app_pgadmin
+    image: dpage/pgadmin4:latest
+    # restart: unless-stopped
+    # mem_reservation: 256m
+    env_file:
+      - .env
+    ports:
+      - ${PGADMIN_PORT}:80
+    volumes:
+      - app_pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - app_db
 
   app_redis:
     image: redis:6.2-alpine
@@ -37,29 +52,17 @@ services:
       - 'redis-server'
       - '--requirepass myStrongPassword'
     ports:
-      - 36379:6379
-
-  app_db_admin:
-    container_name: app_pgadmin4
-    image: dpage/pgadmin4:latest
-    # restart: unless-stopped
-    # mem_reservation: 256m
-    env_file:
-      - .env
-    ports:
-      - ${PGADMIN_PORT}:80
-    volumes:
-      - app_pg_admin_data:/var/lib/pgadmin
-    depends_on:
-      - app_db
+      - ${REDIS_PORT}:6379
 
 volumes:
-  app_pg_data:
+  app_db_data:
     driver: "local"
-  app_pg_data_backups:
+  app_db_backups:
+    driver: "local"
+  app_pgadmin_data:
     driver: "local"
 
 networks:
   default:
     external: true
-    name: app_main
+    name: app_net

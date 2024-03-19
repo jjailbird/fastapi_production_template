@@ -11,10 +11,13 @@ class Config(BaseSettings):
     POSTGRES_DB: str = "db"
     POSTGRES_USER: str = "db-usr"
     POSTGRES_PASSWORD: str = "db-pwd"
-    POSTGRES_PORT: int = 5432
+    POSTGRES_PORT: str | int = 5432
     DATABASE_URL: PostgresDsn | None = None
-    REDIS_URL: RedisDsn
-
+    
+    REDIS_PORT: str | int = 6379
+    REDIS_PASSWORD: str = "redis-pwd"
+    REDIS_URL: RedisDsn | None = None
+    
     SITE_DOMAIN: str = "myapp.com"
 
     ENVIRONMENT: Environment = Environment.PRODUCTION
@@ -36,7 +39,15 @@ class Config(BaseSettings):
             host = values.get('POSTGRES_HOST')
             port = values.get('POSTGRES_PORT')
             db = values.get('POSTGRES_DB')
-            return f"postgresql+asyncpg://{user}:{password}@{host}:{port}/{db}"
+            return f"postgresql+asyncpg://{user}:{password}@{host}:{str(port)}/{db}"
+        return v
+
+    @validator('REDIS_URL', pre=True, always=True)
+    def assemble_redis_url(cls, v, values):
+        if v is None:  
+            password = values.get('REDIS_PASSWORD')
+            port = values.get('REDIS_PORT')
+            return f"redis://:{password}@redis:{str(port)}"
         return v
 
     @model_validator(mode="after")
@@ -50,6 +61,8 @@ class Config(BaseSettings):
 settings = Config()
 
 print(settings.DATABASE_URL)  # postgresql+asyncpg://usr:pwd@host:5432/db
+print(settings.REDIS_URL)  # redis://:pwd@redis:6379
+
 
 app_configs: dict[str, Any] = {"title": "App API"}
 if settings.ENVIRONMENT.is_deployed:
