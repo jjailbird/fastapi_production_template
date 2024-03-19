@@ -30,10 +30,10 @@ so there might be some workarounds instead of neat solutions, but overall idea o
 ## Local Development (with docker)
 
 ### First Build Only
-1. `cp .env.example .env`
-2. `docker network create app_main`
-3. `export COMPOSE_PROJECT_NAME=fastapi-server` (linux like)
-3. `docker-compose up -d --build`
+1. `cp .env.example .env` and edit .env 
+2. `source .env` or reopen terminal
+3. `docker network create app_net`
+4. `docker-compose up -d --build`
 
 ### Linters
 Format the code with `ruff --fix` and `ruff format`
@@ -102,13 +102,17 @@ Backup applied successfully.
 
 ## Local Development and Debugging (with pipenv)
 
+### docker services excluding only app
+1. `cp .env.example .env` and edit .env 
+2. `source .env` or reopen terminal
+3. `docker network create app_net`
+4. `docker-compose up -d app_db app_db_admin app_redis`
+
+### install pipenv and dependencies (packages are installed in the virtual environment, not globally)
 ```bash
-# Install python version (recommanded use pyenv) in Pipfile [requires]
 
 # Install from Pipfile
 pipenv install --dev 
-# or
-pipenv install --dev --skip-lock
 pipenv shell
 ```
 
