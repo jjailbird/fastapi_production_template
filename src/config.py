@@ -27,9 +27,10 @@ class Config(BaseSettings):
 
     APP_VERSION: str = "1"
 
+    # if DATABASE_URL is not explicitly provided, generate if from the other settings
     @validator('DATABASE_URL', pre=True, always=True)
     def assemble_database_url(cls, v, values):
-        if v is None:  # DATABASE_URL이 명시적으로 제공되지 않은 경우 조합하여 생성
+        if v is None:  
             user = values.get('POSTGRES_USER')
             password = values.get('POSTGRES_PASSWORD')
             host = values.get('POSTGRES_HOST')
