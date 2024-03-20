@@ -115,7 +115,7 @@ Backup applied successfully.
 pipenv install --dev 
 pipenv shell
 
-# Database migration
+# Database migration (create tables)
 alembic upgrade head
 ```
 
