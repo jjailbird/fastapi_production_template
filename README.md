@@ -108,12 +108,15 @@ Backup applied successfully.
 3. `docker network create app_net`
 4. `docker-compose up -d app_db app_db_admin app_redis`
 
+
 ### install pipenv and dependencies (packages are installed in the virtual environment, not globally)
 ```bash
-
-# Install from Pipfile
+# Install packages from Pipfile
 pipenv install --dev 
 pipenv shell
+
+# Database migration
+alembic upgrade head
 ```
 
 ### Debuggin in VSCode with pipenv

@@ -59,10 +59,7 @@ class Config(BaseSettings):
 
 
 settings = Config()
-
-print(settings.DATABASE_URL)  # postgresql+asyncpg://usr:pwd@host:5432/db
-print(settings.REDIS_URL)  # redis://:pwd@redis:6379
-
+settings.CORS_ORIGINS
 
 app_configs: dict[str, Any] = {"title": "App API"}
 if settings.ENVIRONMENT.is_deployed:
