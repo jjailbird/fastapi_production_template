@@ -104,6 +104,8 @@ Backup applied successfully.
 
 [How to debug Python apps inside a Docker Container with VS Code](https://www.python-engineer.com/posts/debug-python-docker/)
 
+- attach debugger with Python: Remote Attach in launch.json
+
 ## Local Development and Debugging (with pipenv)
 
 ### docker services excluding only app
