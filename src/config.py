@@ -23,6 +23,9 @@ class Config(BaseSettings):
     ENVIRONMENT: Environment = Environment.PRODUCTION
 
     SENTRY_DSN: str | None = None
+    
+    DEBUG: bool = False
+    DEBUG_PORT: str | int = 5678
 
     CORS_ORIGINS: list[str]
     CORS_ORIGINS_REGEX: str | None = None

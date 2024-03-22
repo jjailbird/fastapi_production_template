@@ -13,5 +13,10 @@ PORT=${PORT:-8000}
 LOG_LEVEL=${LOG_LEVEL:-info}
 LOG_CONFIG=${LOG_CONFIG:-/src/logging.ini}
 
+DEBUG_PORT=${DEBUG_PORT:-5678}
+
+# Start debugpy not working with uvicorn 
+# python -m debugpy --listen 0.0.0.0:$DEBUG_PORT --wait-for-client $APP_MODULE &
+
 # Start Uvicorn with live reload
 exec uvicorn --reload --proxy-headers --host $HOST --port $PORT --log-config $LOG_CONFIG "$APP_MODULE"

@@ -13,6 +13,7 @@ services:
       - ./:/src
     ports:
       - ${PORT_EXTERN}:${PORT}
+      - ${DEBUG_PORT}:${DEBUG_PORT}
     depends_on:
       - app_db
       - app_redis

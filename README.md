@@ -100,6 +100,10 @@ Applying the backup to the new database...
 Backup applied successfully.
 ```
 
+### Debugging in VSCode
+
+[How to debug Python apps inside a Docker Container with VS Code](https://www.python-engineer.com/posts/debug-python-docker/)
+
 ## Local Development and Debugging (with pipenv)
 
 ### docker services excluding only app

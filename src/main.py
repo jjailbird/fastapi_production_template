@@ -11,6 +11,13 @@ from src.auth.router import router as auth_router
 from src.config import app_configs, settings
 from src.external_service.router import router as external_service_router
 
+# Debugging -------------------------------------------
+if settings.DEBUG :
+    import debugpy
+    debugpy.listen(("0.0.0.0", int(settings.DEBUG_PORT)))
+    print("Waiting for client to attach...")
+    debugpy.wait_for_client()
+# -----------------------------------------------------
 
 @asynccontextmanager
 async def lifespan(_application: FastAPI) -> AsyncGenerator:
